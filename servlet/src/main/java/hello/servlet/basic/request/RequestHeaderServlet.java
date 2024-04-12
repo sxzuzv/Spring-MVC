@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.Enumeration;
 
 @WebServlet(name = "requestHeaderServlet", urlPatterns = "/request-header")
 public class RequestHeaderServlet extends HttpServlet {
@@ -14,6 +15,7 @@ public class RequestHeaderServlet extends HttpServlet {
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         printStartLine(request);
+        printHeaders(request);
     }
 
     private static void printStartLine(HttpServletRequest request) {
@@ -43,5 +45,32 @@ public class RequestHeaderServlet extends HttpServlet {
 
         System.out.println("=== REQUEST-LINE - end ===");
         System.out.println();
+    }
+
+    private void printHeaders(HttpServletRequest request) {
+        // HTTP 요청 메시지 Header의 모든 정보를 출력한다. (두 가지 방법)
+
+        // 첫 번째 방법 (request.getHeaderNames() 활용)
+        Enumeration<String> headerNames = request.getHeaderNames();
+
+        System.out.println("=== Headers - start ===");
+
+        while (headerNames.hasMoreElements()) { // 다음 요소가 존재할 시, 반복문 실행
+            // 값을 하나씩 꺼내서 저장해 출력한다.
+            String headerName = headerNames.nextElement();
+            System.out.println(headerName + " : " + headerName);
+        }
+
+        System.out.println("=== Headers - end ===");
+        System.out.println();
+
+        System.out.println("=== Headers - start ===");
+
+        // 두 번째 방법 (asIterator() 사용)
+        request.getHeaderNames().asIterator()
+                .forEachRemaining(headerName ->
+                        System.out.println(headerName + " : " + headerName));
+
+        System.out.println("=== Headers - end ===");
     }
 }
