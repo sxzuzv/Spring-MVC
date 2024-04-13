@@ -27,11 +27,11 @@ public class ResponseJsonServlet extends HttpServlet {
         data.setUsername("soo");
         data.setAge(20);
 
-        // JSON 데이터를 문자로 변경한다. => {"username":"soo", "age":20}
-        // objectMapper.writeValueAsString(): 객체의 값을 문자열로 변경한다.
+        // 데이터를 JSON 문자열로 변경한다. => {"username":"soo", "age":20}
+        // objectMapper.writeValueAsString(): 객체의 값을 JSON 문자열로 변경한다.
         String result = objectMapper.writeValueAsString(data);
 
-        // 문자열로 변경된 JSON 값을 응답 메시지로 출력한다.
+        // JSON 문자열 값을 응답 메시지로 출력한다.
         response.getWriter().write(result);
     }
 }
