@@ -2,11 +2,13 @@ package hello.servlet.basic.response;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.zip.CheckedOutputStream;
 
 @WebServlet(name = "responseHeaderServlet", urlPatterns = "/response-header")
 public class ResponseHeaderServlet extends HttpServlet {
@@ -31,6 +33,9 @@ public class ResponseHeaderServlet extends HttpServlet {
         // Header 편의 메서드 활용
         content(response);
 
+        // cookie 객체 생성 및 메서드 활용
+        cookie(response);
+
         response.getWriter().write("OK!");
     }
 
@@ -47,5 +52,16 @@ public class ResponseHeaderServlet extends HttpServlet {
         response.setContentType("text/plain");
         response.setCharacterEncoding("utf-8");
         // response.setContentLength(2); 생략 시 자동 생성된다.
+    }
+
+    private void cookie(HttpServletResponse response) {
+        // response.setHeader()를 활용한 쿠키 지정
+        // Set-Cookie: myCookie=good; max-Age=600;
+        // response.setHeader("Set-Cookie", "myCookie=good; Max-Age=600");
+
+        // 쿠키 객체 생성 후, 메서드 활용
+        Cookie cookie = new Cookie("myCookie", "good"); // 이름, 값 설정
+        cookie.setMaxAge(600);  // 600초 동안 유효
+        response.addCookie(cookie);
     }
 }
