@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.zip.CheckedOutputStream;
 
 @WebServlet(name = "responseHeaderServlet", urlPatterns = "/response-header")
@@ -39,7 +40,10 @@ public class ResponseHeaderServlet extends HttpServlet {
         // redirect 편의 메서드 활용
         redirect(response);
 
-        response.getWriter().write("OK!");
+        // HTTP 메시지 body 데이터 지정
+        PrintWriter writer = response.getWriter();
+        writer.println("OK!");
+        // response.getWriter().write("OK!");
     }
 
     private void content(HttpServletResponse response) {
