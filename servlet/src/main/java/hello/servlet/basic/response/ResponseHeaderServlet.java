@@ -28,6 +28,24 @@ public class ResponseHeaderServlet extends HttpServlet {
         // 사용자가 원하는 임의의 header를 지정할 수 있다.
         response.setHeader("Soo-header", "soo");
 
+        // Header 편의 메서드 활용
+        content(response);
+
         response.getWriter().write("OK!");
+    }
+
+    private void content(HttpServletResponse response) {
+        // response.setHeader() 메서드를 사용하면 Header의 정보를 직접 설정해줘야 했다.
+        // 아래의 메서드를 활용하여 각 정보를 편리하게 설정할 수 있다.
+
+        // 기존 방식
+        // Content-Type: text/plain;charset=utf-8
+        // Content-Length: 2
+        // response.setHeader("Content-Type", "text/plain;charset=utf-8");
+
+        // 편의 메서드 활용
+        response.setContentType("text/plain");
+        response.setCharacterEncoding("utf-8");
+        // response.setContentLength(2); 생략 시 자동 생성된다.
     }
 }
