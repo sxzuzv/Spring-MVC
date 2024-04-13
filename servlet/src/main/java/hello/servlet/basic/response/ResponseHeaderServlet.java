@@ -36,6 +36,9 @@ public class ResponseHeaderServlet extends HttpServlet {
         // cookie 객체 생성 및 메서드 활용
         cookie(response);
 
+        // redirect 편의 메서드 활용
+        redirect(response);
+
         response.getWriter().write("OK!");
     }
 
@@ -63,5 +66,17 @@ public class ResponseHeaderServlet extends HttpServlet {
         Cookie cookie = new Cookie("myCookie", "good"); // 이름, 값 설정
         cookie.setMaxAge(600);  // 600초 동안 유효
         response.addCookie(cookie);
+    }
+
+    private void redirect(HttpServletResponse response) throws IOException {
+        // Status Code 302
+        // Location: /basic/post-form.html
+
+        // 기존 redirect 지정 방식
+        // response.setStatus(HttpServletResponse.SC_FOUND); => 302
+        // response.setHeader("Location", "/basic/post-form.html");
+
+        // 편의 메서드를 활용한 redirect 지정
+        response.sendRedirect("/basic/post-form.html");
     }
 }
