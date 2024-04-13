@@ -42,5 +42,20 @@ public class RequestParamServlet extends HttpServlet {
 
         System.out.println("[단일 파라미터 조회] - end");
         System.out.println();
+
+        // 하나의 파라미터에 대해 여러 개의 값이 넘어갈 수 있다.
+        // 이 경우, 내부 우선순위에서 높은 순서로 값이 출력된다.
+        System.out.println("[이름이 같은 복수 파라미터 조회] - start");
+
+        // username 파라미터에 대한 여러 개의 값을 String 타입의 배열로 저장한다.
+        String[] usernames = request.getParameterValues("username");
+
+        // 배열에 담긴 값들을 차례로 출력한다.
+        for (String name : usernames) {
+            System.out.println("username : " + name);
+        }
+
+        System.out.println("[이름이 같은 복수 파라미터 조회] - end");
+        System.out.println();
     }
 }
