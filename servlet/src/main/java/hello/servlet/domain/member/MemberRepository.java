@@ -19,7 +19,7 @@ public class MemberRepository {
     private static final MemberRepository instance = new MemberRepository();
 
     // getInstance()를 사용해야만 인스턴스 조회가 가능하다.
-    private static MemberRepository getInstance() {
+    public static MemberRepository getInstance() {
         return instance;
     }
 
@@ -28,7 +28,7 @@ public class MemberRepository {
 
     }
 
-    // 회원 저장
+    // 회원 정보 저장
     public Member save(Member member) {
         // ID를 1만큼 증가시킨다.
         member.setId(++sequence);
