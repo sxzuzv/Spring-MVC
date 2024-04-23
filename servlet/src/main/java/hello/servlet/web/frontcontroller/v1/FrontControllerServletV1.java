@@ -33,8 +33,6 @@ public class FrontControllerServletV1 extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("FrontControllerServletV1.service");
-
         // 요청된 경로를 가져와서(request.getRequestURI()) 저장한다.
         String requestURI = request.getRequestURI();
 
