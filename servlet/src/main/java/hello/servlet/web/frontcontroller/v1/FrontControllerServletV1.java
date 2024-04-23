@@ -34,5 +34,20 @@ public class FrontControllerServletV1 extends HttpServlet {
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         System.out.println("FrontControllerServletV1.service");
+
+        // 요청된 경로를 가져와서(request.getRequestURI()) 저장한다.
+        String requestURI = request.getRequestURI();
+
+        // 저장된 경로에 매핑되는 Controller를 매핑 정보에서 찾아 꺼낸 후, 저장한다.
+        ControllerV1 controllerV1 = controllerMap.get(requestURI);
+
+        if (controllerV1 == null) { // 예외 처리
+            // 매핑되는 Controller 인스턴스가 없는 경우, 상태 코드를 404로 지정한다.
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+            return;
+        }
+
+        // 매핑되는 Controller 인스턴스가 존재한다면, 해당 Controller의 process를 실행한다.
+        controllerV1.process(request, response);
     }
 }
