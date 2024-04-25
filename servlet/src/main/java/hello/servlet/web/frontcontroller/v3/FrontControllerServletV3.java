@@ -64,6 +64,7 @@ public class FrontControllerServletV3 extends HttpServlet {
         MyView view = viewResolver(viewName);
 
         // MyView 객체의 render()를 실행해 JSP를 forward 한다.
+        // 뷰가 렌더링 되기 위해서는 Model이 필요하므로 mv.getModel()을 통해 Model을 넘겨준다.
         view.render(mv.getModel(), request, response);
     }
 

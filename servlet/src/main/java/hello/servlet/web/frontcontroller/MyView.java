@@ -27,6 +27,7 @@ public class MyView {
         modelToRequestAttribute(model, request);
 
         // JSP가 forward 될 때, request.getAttribute를 통해 set 해둔 정보를 사용하게 된다.
+        // (JSP는 request.setAttribute를 통해 필요한 데이터를 넣어둬야 한다.)
         RequestDispatcher dispatcher = request.getRequestDispatcher(viewPath);
         dispatcher.forward(request, response);
     }
