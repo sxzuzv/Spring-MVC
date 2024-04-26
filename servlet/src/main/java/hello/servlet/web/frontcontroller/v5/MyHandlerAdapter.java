@@ -11,5 +11,5 @@ public interface MyHandlerAdapter {
     // handler(controller)가 매개변수로 넘어왔을 때, 이를 처리할 수 있는 어댑터인지를 판단한다.
     boolean supports(Object handler);   // true or false
 
-    ModelView handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+    ModelView handle(HttpServletRequest request, HttpServletResponse response, Object handler) throws ServletException, IOException;
 }
