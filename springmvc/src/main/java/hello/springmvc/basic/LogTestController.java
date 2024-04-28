@@ -1,5 +1,6 @@
 package hello.springmvc.basic;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,9 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 // @RestController: 반환 값이 String 형태일 경우, 문자열 그대로 HTTP Message Body에 입력한다.
 // @Controller: 반환 값이 String 형태일 경우, view 이름으로 간주된다.
 @RestController
+@Slf4j  // Lombok 제공 애너테이션을 선언해주면 private final ~ .. 문장 없이도 로깅이 가능하다.
 public class LogTestController {
     // slf4j 패키지의 Logger 사용!
-    private final Logger log = LoggerFactory.getLogger(getClass()); // 클래스 지정
+    // private final Logger log = LoggerFactory.getLogger(getClass()); // 클래스 지정
 
     @GetMapping("/log-test")
     public String logTest() {
