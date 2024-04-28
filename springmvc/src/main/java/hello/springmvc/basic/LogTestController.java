@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-// @RestController: 반환 값이 String 형태일 경우, 문자열 그대로 값을 반환한다.
+// @RestController: 반환 값이 String 형태일 경우, 문자열 그대로 HTTP Message Body에 입력한다.
 // @Controller: 반환 값이 String 형태일 경우, view 이름으로 간주된다.
 @RestController
 public class LogTestController {
