@@ -4,6 +4,8 @@ import hello.servlet.domain.member.Member;
 import hello.servlet.domain.member.MemberRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -15,7 +17,7 @@ public class SpringMemberControllerV3 {
     private MemberRepository memberRepository = MemberRepository.getInstance();
 
     // 회원 가입 Form
-    @RequestMapping("/new-form")
+    @GetMapping("/new-form")
     public String newForm() {
         /*
             애너테이션 기반의 Controller는 ModelAndView 반환도 가능하지만
@@ -26,7 +28,7 @@ public class SpringMemberControllerV3 {
     }
 
     // 입력된 회원 정보 저장
-    @RequestMapping("/save")
+    @PostMapping("/save")
     public String process(
             @RequestParam("username") String username,
             @RequestParam("age") int age,
@@ -48,7 +50,7 @@ public class SpringMemberControllerV3 {
     }
 
     // 전체 회원 정보 리스트 확인
-    @RequestMapping
+    @GetMapping
     public String members(Model model) {
         List<Member> members = memberRepository.findAll();
 
