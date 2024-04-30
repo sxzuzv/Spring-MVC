@@ -59,4 +59,18 @@ public class MappingController {
         log.info("mappingPath userId={}, orderId={}", userId, orderId);
         return "OK!";
     }
+
+    /**
+     * 특정 파라미터로 추가 매핑: 요청 URL에 params 속성으로 지정한 파라미터가 존재해야 메서드가 정상 호출된다.
+     * params="mode"
+     * params="!mode" (파라미터에 mode가 없어야 한다.)
+     * params="mode=debug"
+     * params="mode!=debug" (mode 파라미터의 값이 debug가 아니어야 한다.)
+     * params="{mode=debug", "data=good"}
+     */
+    @GetMapping(value = "/mapping-param", params = "mode=debug")
+    public String mappingParam() {
+        log.info("mappingParam");
+        return "OK!";
+    }
 }
