@@ -88,4 +88,19 @@ public class MappingController {
         log.info("mappingHeader");
         return "OK!";
     }
+
+    /**
+     * 미디어 타입 조건 매핑: HTTP request의 Content-Type을 설정한다.
+     * HTTP request Header의 Content-Type이 consume 속성으로 지정한 형태일 때, 메서드가 정상 호출된다.
+     * consumes="application/json"
+     * consumes="!application/json"
+     * consumes="application/*"
+     * consumes="*\/*"
+     * MediaType.APPLICAION_JSON_VALUE
+     */
+    @PostMapping(value = "/mapping-consume", consumes = "application/json")
+    public String mappingConsume() {
+        log.info("mappingConsume");
+        return "OK!";
+    }
 }
