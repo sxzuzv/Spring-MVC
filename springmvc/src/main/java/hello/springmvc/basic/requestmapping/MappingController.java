@@ -1,5 +1,7 @@
 package hello.springmvc.basic.requestmapping;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -71,6 +73,19 @@ public class MappingController {
     @GetMapping(value = "/mapping-param", params = "mode=debug")
     public String mappingParam() {
         log.info("mappingParam");
+        return "OK!";
+    }
+
+    /**
+     * 특정 헤더로 추가 매핑: HTTP Header에 headers 속성으로 지정한 값이 존재해야 메서드가 정상 실행된다.
+     * headers="mode"
+     * headers="!mode"
+     * headers="mode=debug"
+     * headers="mode!=debug"
+     */
+    @GetMapping(value = "/mapping-header", headers = "mode=debug")
+    public String mappingHeader() {
+        log.info("mappingHeader");
         return "OK!";
     }
 }
