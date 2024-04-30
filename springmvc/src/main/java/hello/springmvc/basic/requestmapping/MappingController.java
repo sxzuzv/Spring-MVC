@@ -103,4 +103,17 @@ public class MappingController {
         log.info("mappingConsume");
         return "OK!";
     }
+
+    /**
+     * Accept 헤더 기반 Media Type: HTTP request Header의 Accept가 produces 속성으로 지정한 형태일 때, 메서드가 정상 호출된다.
+     * produces = "text/html"
+     * produces = "!text/html"
+     * produces = "text/*"
+     * produces = "*\/*"
+     */
+    @PostMapping(value = "/mapping-produce", produces = "text/html")
+    public String mappingProduces() {
+        log.info("mappingProduces");
+        return "OK!";
+    }
 }
