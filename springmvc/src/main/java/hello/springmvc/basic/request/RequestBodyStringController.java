@@ -9,6 +9,8 @@ import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 
 @Slf4j
@@ -24,5 +26,21 @@ public class RequestBodyStringController {
         log.info("messageBody={}", messageBody);
 
         response.getWriter().write("OK!");
+    }
+
+    @PostMapping("/request-body-string-v2")
+    public void requestBodyStringV2(InputStream inputStream, Writer responseWriter)
+            throws IOException {
+        // HttpServletRequest, HttpServletResponse를 통째로 받을 필요는 없으므로,
+        // 현재 실행에 필요한 파라미터만 받도록 수정한다.
+
+        // InputStream(Reader): HTTP 요청 메시지 바디의 내용을 직접 조회한다.
+        // OutputStream(Writer): HTTP 응답 메시지 바디에 직접 결과를 출력한다.
+
+        String messageBody = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
+
+        log.info("messageBody={}", messageBody);
+
+        responseWriter.write("OK!");
     }
 }
