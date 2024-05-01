@@ -56,4 +56,16 @@ public class RequestParamController {
 
         return "OK!";
     }
+
+    @ResponseBody
+    @RequestMapping("/request-param-default")
+    public String requestParamDefault(
+            @RequestParam("username") String username,
+            @RequestParam(value = "age", defaultValue = "100") int age) {
+
+        // defaultValue 설정 시, 파라미터 값을 직접 입력하지 않아도 기본 값이 설정된다.
+        log.info("username={}, age={}", username, age);
+
+        return "OK!";
+    }
 }
