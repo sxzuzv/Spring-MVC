@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -38,5 +40,21 @@ public class RequestBodyJsonController {
         log.info("username={}, age={}", helloData.getUsername(), helloData.getAge());
 
         response.getWriter().write("@k!");
+    }
+
+    @ResponseBody
+    @PostMapping("/request-body-json-v2")
+    public String requestBodyJsonV2(@RequestBody String messageBody)
+            throws IOException {
+        // @RequestBody, @ResponseBody 애너테이션을 적용해 코드 간소화
+
+        log.info("messageBody={}", messageBody);
+
+        // jackson 라이브러리를 이용하여 JSON을 객체(HelloData) 형태로 변경하고, 값을 읽는다.
+        HelloData helloData = objectMapper.readValue(messageBody, HelloData.class);
+
+        log.info("username={}, age={}", helloData.getUsername(), helloData.getAge());
+
+        return "@k!";
     }
 }
