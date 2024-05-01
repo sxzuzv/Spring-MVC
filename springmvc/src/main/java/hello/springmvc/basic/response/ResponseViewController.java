@@ -15,4 +15,13 @@ public class ResponseViewController {
 
         return mav;
     }
+
+    @RequestMapping("/response-view-v2")
+    public String responseViewV2(Model model) {
+        // String으로 뷰의 논리 이름을 반환한다. => 뷰에 전달할 데이터를 담을 Model 필요!
+        model.addAttribute("data", "@K!");
+
+        // @Controller 애너테이션 사용 + 문자열 반환 => 뷰의 논리 이름으로 판단
+        return "response/hello";
+    }
 }
