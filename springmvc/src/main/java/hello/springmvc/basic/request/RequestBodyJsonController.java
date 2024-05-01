@@ -82,4 +82,14 @@ public class RequestBodyJsonController {
 
         return "@k!";
     }
+
+    @ResponseBody
+    @PostMapping("/request-body-json-v5")
+    public HelloData requestBodyJsonV5(@RequestBody HelloData data) {
+        log.info("username={}, age={}", data.getUsername(), data.getAge());
+
+        // 생성된 HelloData 객체가 HTTP Message Converter에 의해 객체로 변경된다.
+        // JSON으로 변경된 문자가 HTTP Message 응답 시에도 그대로 나오게 된다.
+        return data;    // 요청한 JSON과 동일한 형태의 응답을 확인할 수 있다.
+    }
 }
