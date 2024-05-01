@@ -8,6 +8,8 @@ import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -67,5 +69,16 @@ public class RequestBodyStringController {
 
         // 반환 메시지도 HttpEntity를 활용해 작성할 수 있다.
         return new HttpEntity<>("OK!");
+    }
+
+    @ResponseBody
+    @PostMapping("/request-body-string-v4")
+    public String requestBodyStringV4(@RequestBody String messageBody)
+            throws IOException {
+        // @RequestBody: HTTP Message Body의 내용을 읽어서 변수에 넣어준다.
+        log.info("messageBody={}", messageBody);
+
+        // @ResponseBody: HTTP 응답 시, 반환 값을 넣어서 반환한다.
+        return "OK!";
     }
 }
