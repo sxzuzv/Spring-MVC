@@ -1,5 +1,6 @@
 package hello.springmvc.basic.response;
 
+import hello.springmvc.basic.HelloData;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;
@@ -29,5 +30,15 @@ public class ResponseBodyController {
     public String responseBodyV3() {
         // @ResponseBody: 반환 문자열을 HTTP 응답 Message Body에 넣는다.
         return "@K!";
+    }
+
+    @GetMapping("/response-body-json-v1")
+    public ResponseEntity<HelloData> responseBodyJsonV1() {
+        HelloData helloData = new HelloData();
+
+        helloData.setUsername("soo");
+        helloData.setAge(20);
+
+        return new ResponseEntity<>(helloData, HttpStatus.OK);
     }
 }
