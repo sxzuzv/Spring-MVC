@@ -1,10 +1,12 @@
 package hello.springmvc.basic.request;
 
+import hello.springmvc.basic.HelloData;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -80,6 +82,20 @@ public class RequestParamController {
         log.info("username={}, age={}",
                 paramMap.get("username"), paramMap.get("age"));
 
+        return "OK!";
+    }
+
+    /**
+     * @ModelAttribute 실행 과정
+     * 1) HelloData 객체를 생성한다.
+     * 2) 요청 파라미터의 이름으로 HelloData 객체의 프로퍼티를 찾는다.
+     * 3) 찾은 프로퍼티의 setter를 호출해 파라미터 값을 입력(바인딩)한다.
+     * 예) 파라미터 이름이 username일 시, setUsername() 메서드를 찾아 호출하면서 값을 입력한다.
+     */
+    @ResponseBody
+    @RequestMapping("/model-attribute-v1")
+    public String modelAttributeV1(@ModelAttribute HelloData helloData) {
+        log.info("username={}, age={}", helloData.getUsername(), helloData.getAge());
         return "OK!";
     }
 }
