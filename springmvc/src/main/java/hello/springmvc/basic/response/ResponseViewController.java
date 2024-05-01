@@ -24,4 +24,10 @@ public class ResponseViewController {
         // @Controller 애너테이션 사용 + 문자열 반환 => 뷰의 논리 이름으로 판단
         return "response/hello";
     }
+
+    @RequestMapping("/response/hello")
+    public void responseViewV3(Model model) {
+        // 뷰의 논리 이름과 매핑 URL이 동일할 시, 관례적으로 뷰 이름으로 판단한다. (권장 X)
+        model.addAttribute("data", "@K!");
+    }
 }
