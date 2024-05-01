@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.IOException;
+import java.util.Map;
 
 @Slf4j
 @Controller
@@ -65,6 +66,19 @@ public class RequestParamController {
 
         // defaultValue 설정 시, 파라미터 값을 직접 입력하지 않아도 기본 값이 설정된다.
         log.info("username={}, age={}", username, age);
+
+        return "OK!";
+    }
+
+    @ResponseBody
+    @RequestMapping("/request-param-map")
+    public String requestParamMap(@RequestParam Map<String, Object> paramMap) {
+        // @RequestParam Map: 하나의 key에 하나의 value
+        // @RequestParam MultiValueMap: 하나의 key에 여러 개의 value
+
+        // 모든 요청 파라미터를 Map으로 받아 조회한다.
+        log.info("username={}, age={}",
+                paramMap.get("username"), paramMap.get("age"));
 
         return "OK!";
     }
