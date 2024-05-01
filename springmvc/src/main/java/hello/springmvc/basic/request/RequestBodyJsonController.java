@@ -57,4 +57,14 @@ public class RequestBodyJsonController {
 
         return "@k!";
     }
+
+    @ResponseBody
+    @PostMapping("/request-body-json-v3")
+    public String requestBodyJsonV3(@RequestBody HelloData helloData)
+            throws IOException {
+        // @RequestBody에 직접 만든 객체(HelloData)를 지정할 수 있다.
+        log.info("username={}, age={}", helloData.getUsername(), helloData.getAge());
+
+        return "@k!";
+    }
 }
